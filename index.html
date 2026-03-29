@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ครูธันยพร จันดี - Modern Infographic Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400;500;600&family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #3b82f6;
+            --accent: #10b981;
+            --gradient-1: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            --gradient-2: linear-gradient(135deg, #3b82f6 0%, #2dd4bf 100%);
+            --bg-dark: #020617;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Kanit', sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+
+        /* Background Elements */
+        .bg-blob {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: var(--gradient-1);
+            filter: blur(150px);
+            opacity: 0.15;
+            z-index: -1;
+            border-radius: 50%;
+        }
+        .blob-1 { top: -100px; right: -100px; }
+        .blob-2 { bottom: -100px; left: -100px; background: var(--gradient-2); }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .profile-wrapper {
+            position: relative;
+            margin-bottom: 40px;
+            display: inline-block;
+        }
+
+        .profile-img {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            background: var(--gradient-1);
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .profile-wrapper::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            opacity: 0.3;
+            filter: blur(20px);
+            animation: pulse 4s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 600;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .hero p.job-title {
+            font-size: 1.8rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            font-weight: 400;
+        }
+
+        /* Container & Sections */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        section { padding: 100px 0; }
+
+        .section-header { text-align: center; margin-bottom: 80px; }
+        .section-header h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .divider { width: 80px; height: 4px; background: var(--gradient-2); margin: 0 auto; border-radius: 2px; }
+
+        /* Education Infographic */
+        .edu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .edu-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 32px;
+            backdrop-filter: blur(10px);
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .edu-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--secondary);
+        }
+
+        .edu-card i {
+            font-size: 3rem;
+            margin-bottom: 25px;
+            display: block;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .edu-card h3 { font-size: 1.8rem; margin-bottom: 10px; }
+        .edu-card p { color: var(--text-muted); font-size: 1.1rem; }
+
+        /* Skills/Infographic Elements */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 24px;
+        }
+
+        .stat-item h4 { font-size: 2.5rem; color: var(--secondary); margin-bottom: 5px; }
+        .stat-item p { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); }
+
+        /* Gallery - Modern Masonry */
+        .gallery {
+            columns: 3 300px;
+            column-gap: 25px;
+        }
+
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 25px;
+            border-radius: 24px;
+            overflow: hidden;
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.5s;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: 0.5s;
+        }
+
+        .gallery-item:hover { transform: scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .gallery-item:hover img { filter: brightness(0.8); }
+
+        /* Project Banner */
+        .banner {
+            background: var(--gradient-1);
+            padding: 80px 40px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin: 100px 0;
+            color: white;
+            flex-wrap: wrap;
+        }
+
+        .banner-content { flex: 1; min-width: 300px; }
+        .banner-content h2 { font-size: 3rem; margin-bottom: 20px; line-height: 1.2; }
+        .banner-btn {
+            background: white;
+            color: #6366f1;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: 0.3s;
+        }
+        .banner-btn:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+
+        /* Footer */
+        footer {
+            padding: 100px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .social-links a {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            transition: 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links a:hover {
+            background: var(--gradient-2);
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .gallery { columns: 1; }
+            .hero h1 { font-size: 3rem; }
+            .banner h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+
+    <section class="hero">
+        <div class="container" data-aos="fade-up">
+            <div class="profile-wrapper">
+                <img src="1.jpg.jpg" alt="นางสาวธันยพร จันดี" class="profile-img">
+            </div>
+            <h1 data-aos="zoom-in" data-aos-delay="200">นางสาวธันยพร จันดี</h1>
+            <p class="job-title" data-aos="fade-up" data-aos-delay="400">ครู วิทยฐานะ : ครูชำนาญการพิเศษ</p>
+            <div class="status-badge" data-aos="fade-up" data-aos-delay="600">
+                <i class="fas fa-microchip text-secondary"></i>
+                <span>ผู้เชี่ยวชาญด้านเทคโนโลยีและสื่อสารการศึกษา</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        
+        <section id="education">
+            <div class="section-header" data-aos="fade-up">
+                <h2>ประวัติการศึกษา</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="edu-grid">
+                <div class="edu-card" data-aos="fade-right">
+                    <i class="fas fa-university"></i>
+                    <h4>ปริญญาโท</h4>
+                    <h3>เทคโนโลยีและสื่อสารการศึกษา</h3>
+                    <p>มหาวิทยาลัยนเรศวร</p>
+                </div>
+                <div class="edu-card" data-aos="fade-left">
+                    <i class="fas fa-school"></i>
+                    <h4>ปริญญาตรี</h4>
+                    <h3>วิทยาการคอมพิวเตอร์</h3>
+                    <p>วิทยาลัยครูอุตรดิตถ์</p>
+                </div>
+            </div>
+            
+            <div class="stats-grid" data-aos="fade-up">
+                <div class="stat-item">
+                    <h4>15+</h4>
+                    <p>Years Experience</p>
+                </div>
+                <div class="stat-item">
+                    <h4>50+</h4>
+                    <p>Digital Projects</p>
+                </div>
+                <div class="stat-item">
+                    <h4>1000+</h4>
+                    <p>Students Inspired</p>
+                </div>
+                <div class="stat-item">
+                    <h4>10+</h4>
+                    <p>Certifications</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="banner" data-aos="zoom-in">
+            <div class="banner-content">
+                <h4 style="text-transform: uppercase; letter-spacing: 3px; margin-bottom: 10px;">Featured Innovation</h4>
+                <h2>AI & Digital Transformation in Education</h2>
+                <p style="font-size: 1.2rem; opacity: 0.9; margin-bottom: 30px;">
+                    มุ่งมั่นพัฒนาการเรียนการสอนด้วยนวัตกรรมปัญญาประดิษฐ์และเครื่องมือดิจิทัลสมัยใหม่ เพื่อเตรียมความพร้อมผู้เรียนสู่โลกอนาคต
+                </p>
+                <a href="#" class="banner-btn">ดูรายละเอียดโครงการ</a>
+            </div>
+        </section>
+
+        <section id="portfolio">
+            <div class="section-header" data-aos="fade-up">
+                <h2>แกลเลอรีผลงานและกิจกรรม</h2>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="gallery">
+                <div class="gallery-item" data-aos="fade-up"><img src="657340697_122191655246475780_3691260737229361795_n.jpg"></div>
+                <div class="gallery-item" data-aos="fade-up"><img src="648976639_122190057968475780_8000078981478394294_n.jpg"></div>
+                <div class="gallery-item" data-aos="fade-up"><img src="633543915_122187728090475780_8365038221984558377_n.jpg"></div>
+                <div class="gallery-item" data-aos="fade-up"><img src="656732028_122191655144475780_4742298212426713368_n.jpg"></div>
+                <div class="gallery-item" data-aos="fade-up"><img src="658159053_122191655402475780_1057001925395037414_n.jpg"></div>
+                <div class="gallery-item" data-aos="fade-up"><img src="649239915_122190058160475780_6137731331545010589_n.jpg"></div>
+                <div class="gallery-item" data-aos="fade-up"><img src="2cf4b18f-45c2-48af-996e-5c46b7cf71c0.jpg"></div>
+                <div class="gallery-item" data-aos="fade-up"><img src="641532357_122188822436475780_2454530113593659279_n.jpg"></div>
+                <div class="gallery-item" data-aos="fade-up"><img src="058bd29e-8d82-4fa1-952d-5a5cf791e074.jpg"></div>
+                <div class="gallery-item" data-aos="fade-up"><img src="7cb136a3-9b1a-47a1-ab0f-036c87b3f7b2.jpg"></div>
+                <div class="gallery-item" data-aos="fade-up"><img src="f158259d-3553-4be7-b0f2-03c33eb5a139.jpg"></div>
+                <div class="gallery-item" data-aos="fade-up"><img src="649259383_122190052628475780_7717761723644463381_n.jpg"></div>
+                <div class="gallery-item" data-aos="fade-up"><img src="649620614_122190058070475780_6281666355457203020_n.jpg"></div>
+                <div class="gallery-item" data-aos="fade-up"><img src="634085151_122187728594475780_4911755629694031179_n.jpg"></div>
+                <div class="gallery-item" data-aos="fade-up"><img src="642301690_122188823564475780_59411512444259112_n.jpg"></div>
+                <div class="gallery-item" data-aos="fade-up"><img src="642811253_122188823108475780_6621465394680676784_n.jpg"></div>
+                <div class="gallery-item" data-aos="fade-up"><img src="643451027_122188823258475780_2130609823733813866_n.jpg"></div>
+                <div class="gallery-item" data-aos="fade-up"><img src="eaff3cb0-a7d4-4d26-9439-a4a3e33be32e.jpg"></div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <h2 style="font-size: 2rem; margin-bottom: 10px;">นางสาวธันยพร จันดี</h2>
+            <p style="color: var(--text-muted);">ครู วิทยฐานะ : ครูชำนาญการพิเศษ | โรงเรียนของคุณ</p>
+            
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+                <a href="#"><i class="fas fa-globe"></i></a>
+                <a href="#"><i class="fab fa-line"></i></a>
+            </div>
+            
+            <p style="opacity: 0.4; font-size: 0.9rem;">
+                &copy; 2024 Digital Portfolio Infographic Design. <br>
+                Powered by HTML5, CSS3, and Modern Web Standards.
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            offset: 100,
+            once: true
+        });
+    </script>
+</body>
+</html>
